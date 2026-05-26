@@ -68,16 +68,17 @@ class _BookScreenState extends State<BookScreen> {
       backgroundColor: const Color(0xFFF8F1FA),
       appBar: AppBar(
         backgroundColor: lilac,
+        centerTitle: true,
         title: const Text(
           "Book Screen",
           style: TextStyle(color: Colors.white),
         ),
-        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
+            // Book Name
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               decoration: BoxDecoration(
@@ -90,12 +91,14 @@ class _BookScreenState extends State<BookScreen> {
                 decoration: const InputDecoration(
                   labelText: "Book Name",
                   border: InputBorder.none,
+                  prefixIcon: Icon(Icons.book),
                 ),
               ),
             ),
 
             const SizedBox(height: 15),
 
+            // ISBN
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               decoration: BoxDecoration(
@@ -108,12 +111,14 @@ class _BookScreenState extends State<BookScreen> {
                 decoration: const InputDecoration(
                   labelText: "ISBN Number",
                   border: InputBorder.none,
+                  prefixIcon: Icon(Icons.numbers),
                 ),
               ),
             ),
 
             const SizedBox(height: 15),
 
+            // Price
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               decoration: BoxDecoration(
@@ -127,12 +132,14 @@ class _BookScreenState extends State<BookScreen> {
                 decoration: const InputDecoration(
                   labelText: "Price",
                   border: InputBorder.none,
+                  prefixIcon: Icon(Icons.attach_money),
                 ),
               ),
             ),
 
             const SizedBox(height: 15),
 
+            // Dropdown
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               decoration: BoxDecoration(
@@ -141,10 +148,16 @@ class _BookScreenState extends State<BookScreen> {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: DropdownButton<Author>(
-                hint: const Text("Select Author"),
                 value: selectedAuthor,
                 isExpanded: true,
                 underline: const SizedBox(),
+                hint: const Row(
+                  children: [
+                    Icon(Icons.person),
+                    SizedBox(width: 10),
+                    Text("Select Author"),
+                  ],
+                ),
                 items: authors.map((author) {
                   return DropdownMenuItem(
                     value: author,
@@ -161,6 +174,7 @@ class _BookScreenState extends State<BookScreen> {
 
             const SizedBox(height: 20),
 
+            // Button
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -178,6 +192,7 @@ class _BookScreenState extends State<BookScreen> {
 
             const SizedBox(height: 20),
 
+            // Book List
             Expanded(
               child: ListView.builder(
                 itemCount: books.length,
@@ -192,6 +207,10 @@ class _BookScreenState extends State<BookScreen> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: ListTile(
+                      leading: const Icon(
+                        Icons.menu_book,
+                        color: lilac,
+                      ),
                       title: Text(
                         book.bookName,
                         style: const TextStyle(
